@@ -1,0 +1,59 @@
+.slide1 h1 {
+  font-size: 2em;
+}
+
+.slide1 p {
+  text-align: right;
+}
+
+.slide2-1 p{
+  font-size: 0.7em;
+}
+
+.slide2-1 p span{
+  font-size: 1.5em;
+}
+
+.slide2-1 cite {
+  float: right;
+}
+
+code {
+  line-height: 1.7em !important;
+}
+
+.slide2-2 .dom-class{
+  border: 0;
+  margin: 0;
+  width: 75%;
+}
+
+.dom-img {
+  width: 59%; 
+  display: inline-block; 
+  vertical-align: middle;
+}
+
+.slide3-2 .dom-img img,
+.slide5-2 .dom-img img,
+.slide5-1 .dom-img img {
+  border: 0;
+  margin: 0;
+}
+
+.slide3 h3,
+.slide3-1 h2,
+.slide3-3 h3,
+.slide3-4 h3,
+.slide3-5 h3,
+.slide4 h3,
+.slide4-4 h4,
+.slide6 h2,
+.slide2-2 h2,
+.slide2-2-1 h2 {
+  word-spacing: 15px;
+}
+
+.slide4-4 p {
+  font-size: 0.8em;
+}

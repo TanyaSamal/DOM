@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Presentation: DOM by Tanya Samal</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var liSnk = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="slide1">
+					<h1>Document Object Model (DOM)</h1>
+					<p>Tanya Samal</p>
+				</section>
+				<section class="slide2">
+					<section class="slide2-1">
+						<p>The <span>Document Object Model (DOM)</span> is a cross-platform and language-independent application programming interface that treats an HTML, XHTML, or XML document as a tree structure where in each node is an object representing a part of the document.</p>
+						<cite>&copy;<a href="https://en.wikipedia.org/wiki/Document_Object_Model" target="_blank">Wiki</a></cite>
+						<aside class="notes">
+							The definition of Document Object Model (DOM)
+						</aside>
+					</section>
+					<section class="slide2-2">
+						<h2>DOM class hierarchy</h2>
+						<img class="dom-class" src="img/dom-class-hierarchy.png" alt="dom class hierarchy">
+						<aside class="notes">
+							The hierarchy of DOM node classes: EventTarget ->	Node ->	Element -> HTMLElement.
+						</aside>
+					</section>
+					<section class="slide2-2-1">
+						<h2>Check the inheritance</h2>
+<pre><code>alert( document.body instanceof HTMLBodyElement ); // true
+alert( document.body instanceof HTMLElement ); // true
+alert( document.body instanceof Element ); // true
+alert( document.body instanceof Node ); // true
+alert( document.body instanceof EventTarget ); // true</code></pre>
+						<aside class="notes">
+							Simple example how we can check the inheritance of DOM classes.
+						</aside>
+					</section>
+				</section>
+				<section class="slide3">
+					<section class="slide3-1">
+						<h2>Types of DOM nodes</h2>
+						<ul>
+							<li class="fragment">Element nodes (HTML tag)</li>
+							<li class="fragment">Text nodes</li>
+							<li class="fragment">Attribute node</li>
+						</ul>
+						<aside class="notes">
+							Three types of DOM nodes: element, text and attribute.
+						</aside>
+					</section>
+					<section class="slide3-2">
+						<div style="width: 40%; display: inline-block; vertical-align: middle; float: left;">
+<pre><code class="xml" id="html1">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title>My Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;A heading&lt;/h1&gt;
+  &lt;a href="/"&gt;Link text&lt;/a&gt;
+&lt;/body>
+&lt;/html>
+</code class="javascript"></pre>
+						</div>
+						<div class="fragment dom-img" data-fragment="1">
+							<img src="img/428px-DOM-model.svg.png" alt="DOM Tree">
+						</div>
+						<aside class="notes">
+							Simple example of DOM Tree for HTML.
+						</aside>
+					</section>
+					<section class="slide3-3">
+						<h3>Navigation between nodes</h3>
+						<div class="fragment" style="width: 40%; display: inline-block; vertical-align: middle; float: left;">
+							<ul>
+									<li>parentNode</li>
+									<li>childNodes</li>
+									<li>firstChild</li>
+									<li>lastChild</li>
+									<li>nextSibling</li>
+									<li>previousSibling</li>
+							</ul>
+							<p><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Node">more</a></p>
+						</div>
+						<div class="fragment dom-img" data-fragment="1">
+							<img src="img/dom-links.png" alt="dom node links">
+						</div>
+						<aside class="notes">
+								How navigation between nodes works? Node properties.
+						</aside>	
+					</section>
+					<section class="slide3-4">
+						<h3>Node creation</h3>
+<pre><code class="xml" id="html1">&lt;body&gt;
+  &lt;span&gt;Today's date is &lt;/span&gt;
+  &lt;script&gt;
+    const span = document.createElement("span");
+    span.textContent = new Date().toDateString();
+    document.body.appendChild(span);
+  &lt;/script&gt;
+ &lt;/body>
+</code class="javascript"></pre>
+						<aside class="notes">
+							How to create the DOM node: simple example (span).
+						</aside>
+					</section>
+					<section class="slide3-5">
+						<h3>DOM Node Methods</h3>
+<pre><code class="javascript">parentElem.appendChild(elem);</code></pre>
+<pre><code class="javascript">parentElem.insertBefore(elem, nextSibling);</code></pre>
+<pre><code class="javascript">parentElem.removeChild(elem);</code></pre>
+<pre><code class="javascript">parentElem.replaceChild(elem, currentElem);</code></pre>
+<p><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Node">more</a></p>
+						<aside class="notes">
+							The DOM Node Methods to manipulate elements: append, insert, remove and replace.
+						</aside>
+					</section>
+				</section>
+				<section class="slide4">
+						<section class="slide4-1">
+							<h3>DOM Element</h3>
+							<h4>properties</h4>
+							<div class="fragment">
+								<ul>
+										<li>element.attributes</li>
+										<li>element.children</li>
+										<li>element.id</li>
+										<li>element.name</li>
+										<li>element.innerHTML</li>
+										<li>element.classsList</li>
+								</ul>
+								<p><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/">more</a></p>
+							</div>
+							<aside class="notes">
+								Some main DOM Element propertiers.
+							</aside>
+						</section>
+						<section class="slide4-2">
+								<h3>DOM Element</h3>
+								<h4>methods</h4>
+								<div class="fragment">
+<pre><code class="javascript">elem.getElementById(id)</code></pre>
+<pre><code class="javascript">elem.getElementsByName(name)</code></pre>
+<pre><code class="javascript">elem.getElementsByTagName(tagName)</code></pre>
+<pre><code class="javascript">elem.getElementsByClassName(className)</code></pre>
+<pre><code class="javascript">elem.querySelector(cssSelector)</code></pre>
+<pre><code class="javascript">elem.querySelectorAll(cssSelector)</code></pre>
+								</div>
+								<aside class="notes">
+									The DOM Element methods to select element (or elements) from HTML by different attributes.
+								</aside>
+						</section>
+						<section class="slide4-3">
+							<h4>Example</h4>
+<pre><code class="javascript">const element1 = element.querySelectorAll("p");
+const element2 = element.querySelector("a");
+const element3 = element.querySelector("div.note");	
+const element4 = element.querySelectorAll("#test");	
+const element5 = element.querySelectorAll("li[data-active=1]");</code></pre>
+							<aside class="notes">
+								Examples, how querySelector and querySelectorAll works.
+							</aside>							
+						</section>
+						<section class="slide4-4">
+							<h4>Getting, Setting, and Removing Attributes</h4>
+							<div class="fragment">
+								<p>element.getAttribute(attr)</p>
+<pre style="width: 100%"><code class="javascript">&lt;img src="https://example.com/cat.png"&gt;</code></pre>
+<pre style="width: 100%"><code class="javascript">const animal = document.querySelector("img");
+console.log(animal.getAttribute("src"));  //https://example.com/cat.png</code></pre>
+							</div>
+							<div class="fragment">
+								<p>element.setAttribute(attr, value)</p>
+<pre style="width: 100%"><code class="javascript">const animal = document.querySelector("img");
+animal.setAttribute("alt", "This is a picture of a cat.");
+//&lt;img src="https://example.com/cat.png" alt="This is a picture of a cat."&gt;</code></pre>
+							</div>
+							<div class="fragment">
+								<p>element.removeAttribute(attr)</p>
+<pre style="width: 100%"><code class="javascript">const animal = document.querySelector("img");
+animal.removeAttribute("alt");  //&lt;img src="https://example.com/cat.png"&gt;</code></pre>
+							</div>
+							<aside class="notes">
+								Examples, how change, set, get and remove HTML tag attributes from JS.
+							</aside>		
+						</section>
+						<section class="slide4-5">
+							<h3>Dynamically Applying Styles to Elements</h3>
+<pre><code class="javascript">&lt;div&gt;This is sample text.&lt;/div&gt;</code></pre>
+<pre><code class="javascript">const div = document.querySelector("div");
+const style = getComputedStyle(div, null);
+
+console.log(style);</code></pre>
+							<aside class="notes">
+									Dynamically applying styles to an element can print out all of the styles being applied to this element and their values.
+							</aside>		
+						</section>
+				</section>
+				<section class="slide5">
+					<section class="slide5-1">
+						<h2>HTMLElement</h2>
+						<h4>properties</h4>
+						<div class="fragment" style="width: 40%; display: inline-block; vertical-align: middle; float: left;">
+							<ul>
+								<li>offsetParent</li>
+								<li>offsetLeft</li>
+								<li>offsetTop</li>
+								<li>offsetHeight</li>
+								<li>offsetWidth</li>
+							</ul>
+							<p><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">more</a></p>
+						</div>
+						<div class="fragment dom-img" data-fragment="1">
+							<img src="img/offset.jpg" alt="HTMLElement properties">
+						</div>
+						<aside class="notes">
+							The most commonly used HTMLelement properties: offsetParent, offsetLeft, offsetTop, offsetHeight, offsetWidth.
+						</aside>
+					</section>
+					<section class="slide5-2">
+						<h2>Element</h2>
+						<h4>properties</h4>
+						<div style="width: 40%; display: inline-block; vertical-align: middle; float: left;">
+							<ul>
+								<li>clientTop</li>
+								<li>clientLeft</li>
+								<li>clientWidth</li>
+								<li>clientHeight</li>
+								<li>scrollWidth</li>
+								<li>scrollHeight</li>
+								<li>scrollLeft</li>
+								<li>scrollTop</li>
+							</ul>
+						</div>
+						<div class="fragment dom-img" data-fragment="1">
+							<img src="img/element-size-js.png" alt="HTMLElement properties">
+						</div>
+						<aside class="notes">
+							The most commonly used HTMLelement properties: clientTop/Left, clientWidth/Height, scrollWidth/Height, scrollLeft/Top.
+						</aside>
+					</section>
+				</section>
+				<section class="slide6">
+					<h2>Useful links:</h2>
+					<ul>
+						<li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Document">Document (MDN web docs)</a></li>
+						<li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model#HTML_element_interfaces">HTML interfaces</a></li>
+						<li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/node">Node</a></li>
+						<li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></li>
+						<li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement</a></li>
+					</ul>
+					<aside class="notes">
+						Useful links at MDN DOM web documentation.
+					</aside>
+				</section>
+				<section>
+					Thank you!
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
